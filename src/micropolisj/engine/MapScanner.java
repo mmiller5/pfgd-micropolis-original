@@ -213,7 +213,7 @@ class MapScanner extends TileBehavior
 	void doNewBuilding()
 	{
 		//Very basic building functionality. Checks for power and does "repair"
-		boolean powerOn = checkZonePower();
+		//boolean powerOn = checkZonePower();
 		if ((city.cityTime % 8) == 0) {
 			repairZone(NEW_BUILDING, 3);
 		}
