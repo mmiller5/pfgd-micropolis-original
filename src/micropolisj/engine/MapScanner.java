@@ -354,6 +354,7 @@ class MapScanner extends TileBehavior
 				}
 			}
 		}
+		/* remove church references
 		else if (tile == CHURCH)
 		{
 			city.churchCount++;
@@ -370,6 +371,7 @@ class MapScanner extends TileBehavior
 				}
 			}
 		}
+		*/
 	}
 
 	/**
@@ -540,6 +542,10 @@ class MapScanner extends TileBehavior
 		}
 
 		city.resPop += tpop;
+		
+		// @#$ added death numbers based on residential tiles
+		int deaths = tpop / 8;
+		city.deathPop += deaths;
 
 		int trafficGood;
 		if (tpop > PRNG.nextInt(36))

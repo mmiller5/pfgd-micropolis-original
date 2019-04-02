@@ -116,6 +116,7 @@ public class Micropolis
 	int resPop;
 	int comPop;
 	int indPop;
+	int deathPop; //added death population
 	int hospitalCount;
 	int churchCount;
 	int policeCount;
@@ -526,6 +527,7 @@ public class Micropolis
 		resPop = 0;
 		comPop = 0;
 		indPop = 0;
+		deathPop = 0; //clear deathPop
 		resZoneCount = 0;
 		comZoneCount = 0;
 		indZoneCount = 0;
@@ -1195,6 +1197,10 @@ public class Micropolis
 					if (crimeMem[y][x] > 190) {
 						dis -= 20;
 					}
+					// @#$ added decrease to land value if too many dead
+					if (deathPop > 5) {
+						dis -= 20;
+					}
 					if (dis > 250)
 						dis = 250;
 					if (dis < 1)
@@ -1290,8 +1296,11 @@ public class Micropolis
 
 		double migration = normResPop * (employment - 1);
 		final double BIRTH_RATE = 0.02;
+		//final double DEATH_RATE = 0.005;  //added Death Rate
 		double births = (double)normResPop * BIRTH_RATE;
-		double projectedResPop = normResPop + migration + births;
+		//double deaths = (double)normResPop * DEATH_RATE;
+		double projectedResPop = normResPop + migration + births;// - deaths;
+		//deathPop += deaths;
 
 		double temp = (history.com[1] + history.ind[1]);
 		double laborBase;
@@ -1668,7 +1677,7 @@ public class Micropolis
 		{
 			needHospital = 0;
 		}
-
+/* get rid of church functionality
 		if (churchCount < resPop / 256)
 		{
 			needChurch = 1;
@@ -1681,6 +1690,7 @@ public class Micropolis
 		{
 			needChurch = 0;
 		}
+		*/
 	}
 
 	void takeCensus2()
@@ -1928,6 +1938,7 @@ public class Micropolis
 		resPop = dis.readShort();  //[2-4] populations
 		comPop = dis.readShort();
 		indPop = dis.readShort();
+		deathPop = dis.readShort(); // @#$ added deathPop
 		resValve = dis.readShort(); //[5-7] valves
 		comValve = dis.readShort();
 		indValve = dis.readShort();
@@ -2624,6 +2635,10 @@ public class Micropolis
 				sendMessage(MicropolisMessage.HIGH_TRAFFIC);
 			}
 			break;
+		case 61:
+			if (deathPop > 5) {
+				sendMessage(MicropolisMessage.NEED_CEMETERY);
+			}
 		default:
 			//nothing
 		}
