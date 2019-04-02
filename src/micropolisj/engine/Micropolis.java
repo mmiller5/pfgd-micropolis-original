@@ -1296,11 +1296,11 @@ public class Micropolis
 
 		double migration = normResPop * (employment - 1);
 		final double BIRTH_RATE = 0.02;
-		//final double DEATH_RATE = 0.005;  //added Death Rate
+
 		double births = (double)normResPop * BIRTH_RATE;
-		//double deaths = (double)normResPop * DEATH_RATE;
+
 		double projectedResPop = normResPop + migration + births;// - deaths;
-		//deathPop += deaths;
+
 
 		double temp = (history.com[1] + history.ind[1]);
 		double laborBase;
@@ -1678,7 +1678,6 @@ public class Micropolis
 		{
 			needHospital = 0;
 		}
-/* get rid of church functionality
 		if (churchCount < resPop / 256)
 		{
 			needChurch = 1;
@@ -1691,7 +1690,6 @@ public class Micropolis
 		{
 			needChurch = 0;
 		}
-		*/
 	}
 
 	void takeCensus2()

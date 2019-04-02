@@ -217,6 +217,8 @@ class MapScanner extends TileBehavior
 		if ((city.cityTime % 8) == 0) {
 			repairZone(NEW_BUILDING, 3);
 		}
+		// @#$ decrement deathPop
+		city.deathPop -= 5;
 	}
 
 	void doFireStation()
