@@ -1939,7 +1939,7 @@ public class Micropolis
 		resPop = dis.readShort();  //[2-4] populations
 		comPop = dis.readShort();
 		indPop = dis.readShort();
-		deathPop = dis.readShort(); // @#$ added deathPop
+		//deathPop = dis.readShort(); // @#$ added deathPop
 		resValve = dis.readShort(); //[5-7] valves
 		comValve = dis.readShort();
 		indValve = dis.readShort();
